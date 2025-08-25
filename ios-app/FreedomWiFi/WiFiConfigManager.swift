@@ -103,7 +103,7 @@ class WiFiConfigManager: NSObject {
         eapSettings.trustedServerNames = [domainName]
         
         // Create configuration with domain prefix and EAP settings
-        let configuration = NEHotspotConfiguration(ssidPrefix: domainName, eapSettings: eapSettings)
+        let configuration = NEHotspotConfiguration(ssid: domainName, eapSettings: eapSettings)
         configuration.joinOnce = false
         
         NEHotspotConfigurationManager.shared.apply(configuration) { error in
