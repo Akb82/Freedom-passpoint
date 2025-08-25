@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FreedomWiFi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dJk-5X-aEh">
+                                <rect key="frame" x="20" y="79" width="353" height="739"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="7hK-mX-rOi">
+                                        <rect key="frame" x="126.66666666666669" y="1.3333333333333144" width="100" height="97.666666666666686"/>
+                                        <color key="tintColor" systemColor="systemBlueColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="0Q2-hU-gha"/>
+                                            <constraint firstAttribute="width" constant="100" id="zJ8-1v-BzG"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Freedom WiFi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yku-cS-E9w">
+                                        <rect key="frame" x="101.66666666666669" y="119" width="149.66666666666669" height="33.666666666666657"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="28"/>
+                                        <color key="textColor" systemColor="systemBlueColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Загрузка конфигурации..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7b4-Nb-dY0">
+                                        <rect key="frame" x="0.0" y="172.66666666666666" width="353" height="19.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="bTl-fF-qIe">
+                                        <rect key="frame" x="158" y="212" width="37" height="37"/>
+                                        <color key="color" systemColor="systemBlueColor"/>
+                                    </activityIndicatorView>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oWI-nj-wlF">
+                                        <rect key="frame" x="0.0" y="269" width="353" height="120"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cJ8-fN-7N1">
+                                                <rect key="frame" x="16" y="16" width="321" height="88"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сеть: Freedom WiFi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2Q-Kz-3Xe">
+                                                        <rect key="frame" x="0.0" y="0.0" width="321" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" systemColor="labelColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Провайдер: Freedom Telecom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4g-vX-8dd">
+                                                        <rect key="frame" x="0.0" y="30.333333333333314" width="321" height="20.333333333333329"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" systemColor="labelColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3k6-0R-GV9">
+                                                        <rect key="frame" x="0.0" y="60.666666666666671" width="321" height="27.333333333333329"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Показать установленные конфигурации"/>
+                                                        <connections>
+                                                            <action selector="showInstalledConfigs:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7zj-7K-ebH"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="cJ8-fN-7N1" secondAttribute="bottom" constant="16" id="BW8-7k-Qgz"/>
+                                            <constraint firstAttribute="trailing" secondItem="cJ8-fN-7N1" secondAttribute="trailing" constant="16" id="QXZ-xA-1gw"/>
+                                            <constraint firstItem="cJ8-fN-7N1" firstAttribute="leading" secondItem="oWI-nj-wlF" secondAttribute="leading" constant="16" id="Z3f-5w-7F3"/>
+                                            <constraint firstAttribute="height" constant="120" id="kSm-jb-QdY"/>
+                                            <constraint firstItem="cJ8-fN-7N1" firstAttribute="top" secondItem="oWI-nj-wlF" secondAttribute="top" constant="16" id="wKx-5S-eZ8"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="12"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8PF-rV-qan">
+                                        <rect key="frame" x="0.0" y="409" width="353" height="4"/>
+                                        <progressViewStyle key="progressViewStyle" default="YES"/>
+                                    </progressView>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0aK-qZ-7Vr">
+                                        <rect key="frame" x="0.0" y="433" width="353" height="52"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="5BK-fC-ZpF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Установить WiFi профиль">
+                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="12"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="installButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vKb-Gl-u1l"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="oWI-nj-wlF" firstAttribute="width" secondItem="dJk-5X-aEh" secondAttribute="width" id="8pN-F7-dLf"/>
+                                    <constraint firstItem="7b4-Nb-dY0" firstAttribute="width" secondItem="dJk-5X-aEh" secondAttribute="width" id="Gf6-Zq-gMZ"/>
+                                    <constraint firstItem="8PF-rV-qan" firstAttribute="width" secondItem="dJk-5X-aEh" secondAttribute="width" id="PFu-hJ-ewK"/>
+                                    <constraint firstItem="0aK-qZ-7Vr" firstAttribute="width" secondItem="dJk-5X-aEh" secondAttribute="width" id="fSP-hd-edP"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dJk-5X-aEh" secondAttribute="trailing" constant="20" id="EBu-2O-VCh"/>
+                            <constraint firstItem="dJk-5X-aEh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Kla-5d-H2T"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dJk-5X-aEh" secondAttribute="bottom" id="fTz-BT-T5K"/>
+                            <constraint firstItem="dJk-5X-aEh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="x3N-v6-xmm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="bTl-fF-qIe" id="bfV-Tj-Ygf"/>
+                        <outlet property="configDetailsView" destination="oWI-nj-wlF" id="Lf5-Jf-dWJ"/>
+                        <outlet property="installButton" destination="0aK-qZ-7Vr" id="kPV-7E-Qkg"/>
+                        <outlet property="logoImageView" destination="7hK-mX-rOi" id="u9B-TK-WDL"/>
+                        <outlet property="progressView" destination="8PF-rV-qan" id="lQk-jC-qDb"/>
+                        <outlet property="providerLabel" destination="u4g-vX-8dd" id="MmN-X1-zMl"/>
+                        <outlet property="ssidLabel" destination="w2Q-Kz-3Xe" id="3R4-qN-bWK"/>
+                        <outlet property="statusLabel" destination="7b4-Nb-dY0" id="SzR-3f-Xgr"/>
+                        <outlet property="titleLabel" destination="Yku-cS-E9w" id="sYE-7e-OGR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="20.610687022900763" y="-2.1126760563380285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="wifi.circle.fill" catalog="system" width="128" height="123"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

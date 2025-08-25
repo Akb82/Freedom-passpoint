@@ -1,0 +1,103 @@
+Отлично. Давай быстро подключим уже готовый .mobileconfig в тестовый флоу.
+
+Что делаем
+	1.	Зальёшь файл в Replit (например, Freedom-Passpoint.mobileconfig).
+	2.	Отдаём его по HTTPS с правильным Content-Type.
+	3.	Страница возврата + (опционально) Universal Link в приложение.
+	4.	QR-код на ссылку (как только дашь финальный URL — сгенерирую QR тут же).
+
+⸻
+
+Минимальный сервер (FastAPI, один файл)
+
+Создай Replit (Python) и вставь ниже. В папку проекта положи твой .mobileconfig.
+
+# main.py
+from fastapi import FastAPI, Response, HTTPException
+from fastapi.responses import HTMLResponse
+from pathlib import Path
+import os
+
+app = FastAPI()
+
+FILENAME = os.getenv("PROFILE_FILE", "Freedom-Passpoint.mobileconfig")
+PROFILE_PATH = Path(FILENAME)
+
+@app.get("/hs20/profile.mobileconfig")
+def get_profile():
+    if not PROFILE_PATH.exists():
+        raise HTTPException(404, "Profile not found")
+    data = PROFILE_PATH.read_bytes()
+    # Apple-совместимые заголовки
+    headers = {
+        "Content-Type": "application/x-apple-aspen-config",
+        "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+        "Pragma": "no-cache",
+        "Content-Disposition": f'attachment; filename="{FILENAME}"'
+    }
+    return Response(content=data, media_type="application/x-apple-aspen-config", headers=headers)
+
+@app.get("/hs20/return", response_class=HTMLResponse)
+def done():
+    # Если у тебя есть схема приложения — замени freedom:// на свою
+    return """
+    <!doctype html><meta name=viewport content="width=device-width,initial-scale=1">
+    <body style="font-family: -apple-system, Arial; padding: 24px">
+      <h1>Профиль установлен</h1>
+      <p>Вернитесь в приложение и дождитесь автоматического подключения к Freedom Wi-Fi.</p>
+      <p><a href="freedom://wifi/success">Открыть приложение</a></p>
+    </body>
+    """
+
+# Для Universal Links (если нужно)
+@app.get("/.well-known/apple-app-site-association")
+def aasa():
+    return {
+        "applinks": {
+            "apps": [],
+            "details": [{
+                "appID": "TEAMID.BUNDLEID",  # замени на свои TeamID.BundleID
+                "paths": [ "/hs20/return" ]
+            }]
+        }
+    }
+
+pyproject.toml (или requirements.txt):
+
+fastapi
+uvicorn
+
+Локально (в Replit) маршрут будет:
+https://<твой-repl>.repl.co/hs20/profile.mobileconfig
+
+⸻
+
+Интеграция в iOS (кнопка «Установить профиль»)
+
+let url = URL(string: "https://<твой-repl>.repl.co/hs20/profile.mobileconfig")!
+UIApplication.shared.open(url)
+
+После установки профиля можно вести пользователя на
+https://<твой-repl>.repl.co/hs20/return (через инструкции на экране).
+
+⸻
+
+Проверка на iPhone
+	•	iOS 17/18: после нажатия ссылки появится «Загрузить профиль». Затем:
+Настройки → Загруженный профиль (или Настройки → Основные → VPN и управление устройством) → Установить.
+	•	Убедись, что профиль содержит твой Passpoint payload (com.apple.wifi.managed с HS2.0).
+
+⸻
+
+Безопасность и UX
+	•	Профиль персональный? Включи no-store (как в коде).
+	•	Если профиль подписан — отлично. Если нет — для теста можно без подписи.
+	•	На лендинге (или в приложении) добавь шаги 1-2-3 и короткое видео-гиф.
+
+⸻
+
+Что нужно от тебя сейчас
+	1.	Загрузи сюда .mobileconfig (или дай имя/хеш, если уже в Replit).
+	2.	Сообщи итоговый URL — я сгенерирую QR-код для теста и чек-лист валидации (OID/NAI realm/EAP и т. п.).
+
+Готов идти дальше как только дашь файл или ссылку.

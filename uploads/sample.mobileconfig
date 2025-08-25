@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>PayloadType</key>
+            <string>com.apple.wifi.managed</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>PayloadIdentifier</key>
+            <string>com.freedom.wifi.passpoint</string>
+            <key>PayloadUUID</key>
+            <string>12345678-1234-5678-9012-123456789012</string>
+            <key>PayloadDisplayName</key>
+            <string>Freedom WiFi Passpoint</string>
+            <key>PayloadDescription</key>
+            <string>Automatic WiFi configuration for Freedom hotspots</string>
+            <key>SSID_STR</key>
+            <string>Freedom-WiFi</string>
+            <key>HIDDEN_NETWORK</key>
+            <false/>
+            <key>AutoJoin</key>
+            <true/>
+            <key>EncryptionType</key>
+            <string>WPA2</string>
+            <key>EAPClientConfiguration</key>
+            <dict>
+                <key>Username</key>
+                <string>freedom_user</string>
+                <key>Password</key>
+                <string>freedom_pass</string>
+                <key>AcceptEAPTypes</key>
+                <array>
+                    <integer>21</integer>
+                </array>
+                <key>EAPFASTUsePAC</key>
+                <true/>
+                <key>EAPFASTProvisionPAC</key>
+                <true/>
+                <key>TLSTrustedServerNames</key>
+                <array>
+                    <string>radius.freedom.com</string>
+                </array>
+            </dict>
+            <key>HS20Settings</key>
+            <dict>
+                <key>DomainName</key>
+                <string>freedom.com</string>
+                <key>RoamingConsortiumOIs</key>
+                <array>
+                    <string>506F9A</string>
+                </array>
+                <key>NAIRealmNames</key>
+                <array>
+                    <string>freedom.com</string>
+                </array>
+                <key>MCCAndMNCs</key>
+                <array>
+                    <string>310-410</string>
+                </array>
+            </dict>
+        </dict>
+    </array>
+    <key>PayloadDisplayName</key>
+    <string>Freedom WiFi Passpoint Configuration</string>
+    <key>PayloadIdentifier</key>
+    <string>com.freedom.wifi.passpoint.profile</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>87654321-4321-8765-2109-876543210987</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+    <key>PayloadDescription</key>
+    <string>This profile enables automatic connection to Freedom WiFi hotspots using Passpoint technology.</string>
+</dict>
+</plist>

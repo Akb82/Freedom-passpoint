@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Installed - iOS Profile Server</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <div class="text-center">
+                    <!-- Success Icon -->
+                    <div class="mb-4">
+                        <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                    </div>
+                    
+                    <!-- Success Message -->
+                    <h1 class="display-5 mb-3">Profile Installed Successfully!</h1>
+                    <p class="lead mb-4">
+                        Your iOS device is now configured for automatic WiFi connectivity.
+                    </p>
+                    
+                    <!-- Instructions -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="bi bi-wifi"></i>
+                                What happens next?
+                            </h5>
+                            <div class="text-start">
+                                <ul class="list-unstyled">
+                                    <li class="mb-2">
+                                        <i class="bi bi-check-circle text-success me-2"></i>
+                                        Your device will automatically connect to Freedom Wi-Fi hotspots
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="bi bi-check-circle text-success me-2"></i>
+                                        No need to manually enter passwords
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="bi bi-check-circle text-success me-2"></i>
+                                        Seamless roaming between supported access points
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="bi bi-check-circle text-success me-2"></i>
+                                        Secure WPA2/WPA3-Enterprise authentication
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="mt-4">
+                        <!-- Deep link to app if available -->
+                        <a href="freedom://wifi/success" class="btn btn-primary me-2">
+                            <i class="bi bi-phone"></i>
+                            Return to App
+                        </a>
+                        
+                        <!-- Alternative universal link -->
+                        <a href="/" class="btn btn-outline-secondary">
+                            <i class="bi bi-house"></i>
+                            Back to Home
+                        </a>
+                    </div>
+                    
+                    <!-- Additional Info -->
+                    <div class="mt-4">
+                        <small class="text-muted">
+                            If the app link doesn't work, manually open your app and wait for automatic connection.
+                        </small>
+                    </div>
+                </div>
+                
+                <!-- Troubleshooting -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h6 class="mb-0">
+                            <i class="bi bi-question-circle"></i>
+                            Troubleshooting
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <p class="small mb-2">
+                            <strong>Not connecting automatically?</strong>
+                        </p>
+                        <ul class="small">
+                            <li>Make sure you're in range of a Freedom Wi-Fi hotspot</li>
+                            <li>Check that WiFi is enabled on your device</li>
+                            <li>Try forgetting and reconnecting to WiFi networks</li>
+                            <li>Restart your device if issues persist</li>
+                        </ul>
+                        
+                        <p class="small mb-2 mt-3">
+                            <strong>Want to remove the profile?</strong>
+                        </p>
+                        <p class="small">
+                            Go to <strong>Settings → General → VPN & Device Management</strong> and delete the profile.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Auto redirect to app after delay -->
+    <script>
+        // Try to open the app after a short delay
+        setTimeout(function() {
+            // First try the deep link
+            window.location.href = 'freedom://wifi/success';
+        }, 3000);
+        
+        // Fallback message after longer delay
+        setTimeout(function() {
+            const appLink = document.querySelector('a[href="freedom://wifi/success"]');
+            if (appLink) {
+                appLink.classList.add('btn-warning');
+                appLink.innerHTML = '<i class="bi bi-exclamation-triangle"></i> Open App Manually';
+            }
+        }, 8000);
+    </script>
+</body>
+</html>

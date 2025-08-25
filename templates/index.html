@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiFi Profile Installer</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="WiFi Profiles">
+    <meta name="theme-color" content="#0d6efd">
+    
+    <!-- PWA Icons -->
+    <link rel="icon" href="/static/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/static/icon-192.png">
+    <link rel="manifest" href="/manifest.json">
+    
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- Header -->
+                <div class="text-center mb-4">
+                    <div class="mb-3">
+                        <img src="/static/icon.svg" alt="WiFi" style="width: 80px; height: 80px;">
+                    </div>
+                    <h1 class="h2 mb-3">
+                        WiFi Profile Installer
+                    </h1>
+                    <p class="text-muted">Простая установка WiFi профилей для iPhone и Android</p>
+                    
+                    <!-- PWA Installation Banner -->
+                    <div id="pwa-install" class="alert alert-info d-none" role="alert">
+                        <i class="bi bi-plus-circle"></i>
+                        <strong>Добавить на главный экран</strong><br>
+                        <small>Установите как приложение для быстрого доступа</small>
+                        <button class="btn btn-sm btn-primary ms-2" id="install-pwa">Установить</button>
+                    </div>
+                </div>
+
+                <!-- Flash Messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ 'danger' if category == 'danger' else 'success' }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <!-- Current Profile Status -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-gear"></i>
+                            Current Profile Status
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        {% if profile_exists %}
+                            <div class="alert alert-success">
+                                <i class="bi bi-check-circle"></i>
+                                <strong>Active Profile:</strong> {{ current_profile }}
+                            </div>
+                            
+                            <!-- Device Detection Alert -->
+                            {% if device_type == 'ios' %}
+                                <div class="alert alert-info">
+                                    <i class="bi bi-phone"></i>
+                                    <strong>iOS Device Detected:</strong> Use the iOS profile below
+                                </div>
+                            {% elif device_type == 'android' %}
+                                <div class="alert alert-info">
+                                    <i class="bi bi-android2"></i>
+                                    <strong>Android Device Detected:</strong> Use the WiFi QR code below
+                                </div>
+                            {% endif %}
+                            
+                            <div class="row">
+                                <!-- iOS Section -->
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">
+                                                <i class="bi bi-apple"></i>
+                                                For iOS Devices (iPhone/iPad)
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <h6>Installation URL:</h6>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" id="profileUrl" value="{{ profile_url }}" readonly>
+                                                <button class="btn btn-outline-secondary" type="button" onclick="copyToClipboard('profileUrl')">
+                                                    <i class="bi bi-clipboard"></i>
+                                                </button>
+                                            </div>
+                                            
+                                            <a href="{{ profile_url }}" class="btn btn-primary me-2">
+                                                <i class="bi bi-download"></i>
+                                                Download Profile
+                                            </a>
+                                            
+                                            <div class="text-center mt-3">
+                                                <img src="{{ qr_code }}" alt="iOS Profile QR Code" class="img-fluid" style="max-width: 150px;">
+                                                <p class="small text-muted mt-2">
+                                                    Scan to install iOS profile
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Android Section -->
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">
+                                                <i class="bi bi-android2"></i>
+                                                For Android Devices
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            {% if wifi_data %}
+                                                <div class="mb-3">
+                                                    <strong>Network:</strong> {{ wifi_data.ssid }}<br>
+                                                    <strong>Security:</strong> {{ wifi_data.security }}
+                                                    {% if wifi_data.hidden %}<br><strong>Hidden Network</strong>{% endif %}
+                                                </div>
+                                                
+                                                <a href="{{ url_for('android_wifi') }}" class="btn btn-success me-2">
+                                                    <i class="bi bi-download"></i>
+                                                    Download XML Config
+                                                </a>
+                                                
+                                                {% if wifi_qr_code %}
+                                                <div class="text-center mt-3">
+                                                    <img src="{{ wifi_qr_code }}" alt="WiFi QR Code" class="img-fluid" style="max-width: 150px;">
+                                                    <p class="small text-muted mt-2">
+                                                        Scan to connect WiFi automatically
+                                                    </p>
+                                                </div>
+                                                {% endif %}
+                                            {% else %}
+                                                <div class="alert alert-warning">
+                                                    <i class="bi bi-exclamation-triangle"></i>
+                                                    Could not extract WiFi data from profile
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="alert alert-warning">
+                                <i class="bi bi-exclamation-triangle"></i>
+                                No active profile found. Upload a .mobileconfig file to get started.
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Upload Form -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-cloud-upload"></i>
+                            Upload New Profile
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url_for('upload_profile') }}" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="file" class="form-label">Select .mobileconfig file</label>
+                                <input type="file" class="form-control" id="file" name="file" accept=".mobileconfig" required>
+                                <div class="form-text">
+                                    Upload iOS configuration profiles with Passpoint WiFi settings (max 16MB)
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-upload"></i>
+                                Upload Profile
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Uploaded Profiles -->
+                {% if uploaded_profiles %}
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-files"></i>
+                            Uploaded Profiles
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Profile Name</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for profile in uploaded_profiles %}
+                                    <tr>
+                                        <td>
+                                            <i class="bi bi-file-earmark-text"></i>
+                                            {{ profile }}
+                                        </td>
+                                        <td>
+                                            {% if profile == current_profile %}
+                                                <span class="badge bg-success">Active</span>
+                                            {% else %}
+                                                <span class="badge bg-secondary">Inactive</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if profile != current_profile %}
+                                                <a href="{{ url_for('set_active_profile', filename=profile) }}" 
+                                                   class="btn btn-sm btn-outline-primary me-1">
+                                                    <i class="bi bi-check-circle"></i>
+                                                    Set Active
+                                                </a>
+                                            {% endif %}
+                                            <a href="{{ url_for('delete_profile', filename=profile) }}" 
+                                               class="btn btn-sm btn-outline-danger"
+                                               onclick="return confirm('Are you sure you want to delete this profile?')">
+                                                <i class="bi bi-trash"></i>
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Instructions -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-info-circle"></i>
+                            Installation Instructions
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6><i class="bi bi-apple"></i> For iPhone/iPad (iOS 17/18):</h6>
+                                <ol class="small">
+                                    <li>Scan the QR code or tap "Download Profile"</li>
+                                    <li>Tap "Download Profile" in the popup</li>
+                                    <li>Go to <strong>Settings → General → VPN & Device Management</strong></li>
+                                    <li>Find the profile and tap <strong>Install</strong></li>
+                                    <li>Complete the installation process</li>
+                                    <li>Automatic connection to WiFi hotspots</li>
+                                </ol>
+                            </div>
+                            <div class="col-md-6">
+                                <h6><i class="bi bi-android2"></i> For Android Devices:</h6>
+                                <ol class="small">
+                                    <li>Scan the WiFi QR code with your camera app</li>
+                                    <li>Tap "Connect to WiFi" when prompted</li>
+                                    <li>Or download XML config and import in WiFi settings</li>
+                                    <li>Manual setup: Go to WiFi settings → Add network</li>
+                                    <li>Enter network details shown above</li>
+                                    <li>Save and connect automatically</li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info mt-3">
+                            <i class="bi bi-lightbulb"></i>
+                            <strong>Note:</strong> Both methods enable automatic WiFi authentication for seamless connectivity to supported hotspots.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            element.select();
+            element.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(element.value);
+            
+            // Show feedback
+            const button = element.nextElementSibling;
+            const originalHtml = button.innerHTML;
+            button.innerHTML = '<i class="bi bi-check"></i>';
+            
+            setTimeout(() => {
+                button.innerHTML = originalHtml;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

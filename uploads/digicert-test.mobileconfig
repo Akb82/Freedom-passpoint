@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>PayloadType</key>
+  <string>Configuration</string>
+  <key>PayloadVersion</key>
+  <integer>1</integer>
+  <key>PayloadIdentifier</key>
+  <string>com.freedomtel.digicert.test</string>
+  <key>PayloadUUID</key>
+  <string>11111111-2222-3333-4444-555555555555</string>
+  <key>PayloadDisplayName</key>
+  <string>DigiCert Test Root</string>
+  <key>PayloadDescription</key>
+  <string>Тестовый профиль: публичный сертификат DigiCert Global Root G2</string>
+  <key>PayloadOrganization</key>
+  <string>Freedom Telecom</string>
+  <key>PayloadContent</key>
+  <array>
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.security.root</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadIdentifier</key>
+      <string>com.freedomtel.digicert.test.root</string>
+      <key>PayloadUUID</key>
+      <string>66666666-7777-8888-9999-000000000000</string>
+      <key>PayloadDisplayName</key>
+      <string>DigiCert Global Root G2</string>
+      <key>PayloadDescription</key>
+      <string>Публичный корневой сертификат DigiCert, уже доверенный iOS</string>
+      <key>PayloadContent</key>
+      <data>
+MIIC8jCCAdqgAwIBAgIQDOfg5Lmq2R3Vb9nM47Jz/jANBgkqhkiG9w0BAQsFADCB
+kDELMAkGA1UEBhMCVVMxFjAUBgNVBAoTDUludGVybmV0IFdpZHRoaW4xQDA+BgNV
+BAMTN0RpZ2lDZXJ0IEdsb2JhbCBSb290IEcyIFNlY3VyZSBTZXJ2ZXIgQ0EgLSBT
+SEEyNTYgLSBHMjAeFw0xMzA4MDExMjAwMDBaFw00MzA4MDExMjAwMDBaMIGQMQsw
+CQYDVQQGEwJVUzEWMBQGA1UEChMNSW50ZXJuZXQgV2lkdGhp bjFAMD4GA1UEAxM3
+RGlnaUNlcnQgR2xvYmFsIFJvb3QgRzIgU2VjdXJlIFNlcnZlciBDQSAtIFNIQTI1
+NiAtIEcyMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwTSe8lqP5HYs
+z8LsIF3eqB4zJH/7Zz3wuyQJ8xk7I1XlBgQj3f+Jw+czZJvn/EQ7P3rRA4gj4sLv
+NfOkHGudb/JJwMTbI8QvgzTezRgl6NwDKpGmTlH4x0Aixuq2Gw/Eg9DzCe3QjVAX
+HhYVqUvA4Y80TozWTtOBlhHw8+3tfrmhAr0xBoZJOnp1kvVIOGQkVUZddSPcJ5fU
+x7hK0zT4d9iFLLQhXAjOJlR31uDvtN8J8/7P2yw6CZrrl69vXc7BjqY7bRrT1NoC
+5kBqVtpgdHwTtP2Pv/GpkkG3nkvuhzqHvfClcJbz9r3OBdQ/U+Q4e0nTi9jv6gDF
+iG+kny3+9QIDAQABo0IwQDAdBgNVHQ4EFgQU+uW3K6TPw8pzbjUuKH3j5ZQlU9Ew
+DgYDVR0PAQH/BAQDAgGGMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQAD
+ggEBACG5dkp+N+c3u0KkbX4CV03c4tYbqfyC32y6wjC5Rx6CvKR8N1xz8XdoS2jJ
+Lm0quKzOs8C5noYj8cg6M3kBRiWm1aNmvlfbQfwClruU5kh6en5EqJ9+6uXJqF6Q
+rBHFxnKp2yNiEWKq9bafDs0k+d1M+LdyFYFYye4Pl+y0PGFWYsX9U4cM7YjC2hrM
+6KhQ0lY0urQ0QAwSJsx5YbFmEjaeWkzxP7kRXKuX3sI5Yucs8aTCHCz/Yz1Nkgu1
+6cZCkUzKQm5mUQ0Ahhx31qUetQUJyuAqfqUEnZ8R6Wfdt0G4Zln7+x9agE/TDPaI
+8l+x0zbb9+6Y5N0W7uAxhE9btmU=
+      </data>
+    </dict>
+  </array>
+</dict>
+</plist>
